@@ -9,7 +9,7 @@ Caso alguém tenha recomendações de alterações para melhor entendimento das 
 Essas alterações podem ser mudança nos comentários, adição de novos links de materiais ou até mesmo soluções melhores de código.
 
 ## Alterações no repositório
-Cada participante deve fazer alterações em sua propria branch, nesta branch ele pode apresentação suas soluções para os problemas que resolveu, semelhante a main.
+Cada participante deve fazer alterações em sua propria branch, nesta branch ele pode apresentar suas soluções para os problemas que resolveu, semelhante a main.
 
-## Tracking 
-Para facilitar o "tracking" os participantes devem preencher a tabela de conteúdos trabalhados.
+## Outros códigos
+Esta pasta contém soluções de problemas de alguns contests do CodeForces.
