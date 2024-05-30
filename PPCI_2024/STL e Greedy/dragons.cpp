@@ -1,9 +1,13 @@
-#include <bits/stdc++.h>
-using namespace std;
 // problema: 
 // https://codeforces.com/contest/230/problem/A
 
+// links relevantes:
+// multiset: https://en.cppreference.com/w/cpp/container/multiset
+
 // -------------------------------------------------------------------------- //
+
+#include <bits/stdc++.h>
+using namespace std;
 
 // precisamos apenas saber em qual ordem podemos derrotar todos os dragões
 // utilizando multiset teremos em ordem crescente a força dos dragrões

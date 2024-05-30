@@ -1,6 +1,9 @@
 // problema:
 // https://www.codechef.com/HCKATHON/problems/PAR
 
+// links relevantes:
+// stack: https://en.cppreference.com/w/cpp/container/stack
+
 // -------------------------------------------------------------------------- //
 
 #include <bits/stdc++.h>
