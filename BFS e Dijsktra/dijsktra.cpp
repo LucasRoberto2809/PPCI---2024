@@ -7,49 +7,63 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-#define INF 2e6
+#define INF INT_MAX
+#define pii pair<int, int>
 
-// handbook: priority_queue
-for (int i = 1; i <= n; i++) distance[i] = INF;
-distance[x] = 0;
-q.push({0,x});
-while (!q.empty()) {
-    int a = q.top().second; q.pop();
-    if (processed[a]) continue;
-    processed[a] = true;
-    for (auto u : adj[a]) {
-        int b = u.first, w = u.second;
-        if (distance[a]+w < distance[b]) {
-            distance[b] = distance[a]+w;
-            q.push({-distance[b],b});
+int n, m;
+vector<pii> adj[100005];
+bool vis[100005];
+int dis[100005], path[100005];
+vector<int> resp;
+priority_queue<pii> pq;
+// temos 2 opções de implementaçao usando priority queue:
+// 1- priority_queue<pii, vector<pii>, greater<pii>> usando dis direto no algoritmo
+// 2- priority_queue<pii> default e usar -dis no algoritmo
+
+void dijsktra (int x){
+    // crio vetores de distancia e caminho
+    for(int i=0; i<n; ++i)  dis[i] = INF;
+    dis[x] = 0;
+    pq.push({0, x});
+    while(!pq.empty()){
+        int u = pq.top().second;
+        pq.pop();
+        if(vis[u])  continue;
+        vis[u] = true;
+        for(auto i = adj[u].begin(); i != adj[u].end(); i++){
+            int v = i->first;
+            int w = i->second;
+            if(dis[v] > dis[u] + w){
+                dis[v] = dis[u] + w;
+                path[u] = v;
+                pq.push({-dis[v], v});  // -dis[v] caso utilizemos priority queue default
+            }
         }
     }
 }
 
-vector<vector<pair<int, int>>> adj;
-vector<int> dis, resp;
-vector<bool> vis;
-set<pair<int,int>, int> q;
-
-void dijsktra (){
-}
-
 int main(){
     ios::sync_with_stdio(false);
-    int n, m;
     cin >> n >> m;
-    // crio vetores de tamanho n
-    adj = vector<vector<pair<int, int>>>(n);
-    dis = vector<int>(n, INF);
-    vis = vector<bool>(n);
     // crio lista de adjacencia
     for(int i=0; i<m; ++i){
         int a, b, w;
         cin >> a >> b >> w;
-        // diminuo a e b em 1
-        a--; b--;
+        a--; b--; // diminuo a e b em 1
         adj[a].push_back({b, w});
         adj[b].push_back({a, w});
+    }
+    dijsktra(0);
+    if(dis[n-1] == INF) cout << "-1\n";
+    else{
+        int a = 0;
+        while(a != n-1){
+            resp.push_back(a+1);
+            a = path[a];
+        }
+        resp.push_back(n);
+        for(auto i : resp)  cout << i << ' ';
+        cout << '\n';
     }
 
     return 0;
